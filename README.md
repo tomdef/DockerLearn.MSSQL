@@ -5,7 +5,7 @@
 docker-compose up --build --force-recreate
 ```
 
-commands should ends with
+command should ends with
 ```
 (...)
 running set up script...
@@ -50,6 +50,13 @@ exit
 
 ---
 #### How database looks like?
+
+```sql
+USE [DockerLearnDatabase]
+SELECT *
+  FROM [dbo].[TestTable]
+```
+
 ![Azure Data Studio](/.Docs/screenshot_ADS_01.png)
 ---
 ```
