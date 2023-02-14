@@ -1,0 +1,16 @@
+﻿version: "3.6"
+
+services:
+
+  mssql:
+    build:
+      context: ./Database
+    container_name: mssql
+    user: root
+    command: /bin/bash /home/scripts/entrypoint.sh
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+      - MSSQL_SA_PASSWORD=Pass@word

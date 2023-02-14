@@ -1,0 +1,12 @@
+FROM mcr.microsoft.com/mssql/server:2019-latest
+
+EXPOSE 1433
+
+# Required env vars
+ENV ACCEPT_EULA=Y
+ENV MSSQL_SA_PASSWORD=Pass@word
+
+# Copy all scripts
+ADD ./scripts/docker-entrypoint.sh /home/scripts/entrypoint.sh
+ADD ./scripts/docker-db-init.sh /home/scripts/db-init.sh
+ADD ./scripts/db-init.sql /home/scripts/db-init.sql
