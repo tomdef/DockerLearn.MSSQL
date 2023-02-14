@@ -2,25 +2,30 @@
 
 
 ```
-docker-compose up --build --force-recreate
+docker-compose up --build --force-recreate --detach
 ```
 
-command should ends with
+example of result:
 ```
-(...)
-running set up script...
-mssql  | Changed database context to 'master'.
-mssql  | 2023-02-14 15:34:09.45 spid51      [5]. Feature Status: PVS: 0. CTR: 0. ConcurrentPFSUpdate: 1.
-2023-02-14 15:34:09.45 spid51      Starting up database 'DockerLearnDatabase'.
-2023-02-14 15:34:09.51 spid51      Parallel redo is started for database 'DockerLearnDatabase' with worker pool size [2].
-2023-02-14 15:34:09.54 spid51      Parallel redo is shutdown for database 'DockerLearnDatabase' with worker pool size [2].
-Changed database context to 'DockerLearnDatabase'.
-mssql  |
-mssql  | (1 rows affected)
-mssql  |
-mssql  | (1 rows affected)
-mssql  |
-mssql  | (1 rows affected)
+[+] Building 1.5s (9/9) FINISHED
+ => [internal] load build definition from dockerfile                                                               0.0s
+ => => transferring dockerfile: 32B                                                                                0.0s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load metadata for mcr.microsoft.com/mssql/server:2019-latest                                        1.0s
+ => CACHED [1/4] FROM mcr.microsoft.com/mssql/server:2019-latest@sha256:f57d743a99a4003a085d0fd67dbb5ecf98812c08a  0.0s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 160B                                                                                  0.0s
+ => [2/4] ADD ./scripts/docker-entrypoint.sh /home/scripts/entrypoint.sh                                           0.1s
+ => [3/4] ADD ./scripts/docker-db-init.sh /home/scripts/db-init.sh                                                 0.1s
+ => [4/4] ADD ./scripts/db-init.sql /home/scripts/db-init.sql                                                      0.1s
+ => exporting to image                                                                                             0.1s
+ => => exporting layers                                                                                            0.1s
+ => => writing image sha256:cbc91463acabe7610dc6fcda67575322aba0c9a0e365793f8f500892cc83c319                       0.0s
+ => => naming to docker.io/library/dockerlearnmssql-mssql                                                          0.0s
+[+] Running 2/2
+ - Network dockerlearnmssql_default  Created                                                                       0.7s
+ - Container mssql                   Started                                                                       1.4s
 ```
 
 ```
@@ -53,8 +58,7 @@ exit
 
 ```sql
 USE [DockerLearnDatabase]
-SELECT *
-  FROM [dbo].[TestTable]
+SELECT * FROM [dbo].[TestTable]
 ```
 
 ![Azure Data Studio](/.Docs/screenshot_ADS_01.png)
