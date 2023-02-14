@@ -1,7 +1,9 @@
 # DockerLearn.MSSQL
 
 
-<code>docker-compose up --build --force-recreate</code>
+```
+docker-compose up --build --force-recreate
+```
 
 commands should ends with
 ```
@@ -21,12 +23,18 @@ mssql  |
 mssql  | (1 rows affected)
 ```
 
-<code>docker ps</code>
+```
+docker ps
+```
 ```
 CONTAINER ID   IMAGE                    COMMAND                  CREATED         STATUS         PORTS                    NAMES
 3f2b0123625a   dockerlearnmssql-mssql   "/opt/mssql/bin/perm…"   3 minutes ago   Up 3 minutes   0.0.0.0:1433->1433/tcp   mssql   
 ```
-<code>docker exec -it mssql /bin/bash</code>
+#### Check if script files are inside image:
+```
+docker exec -it mssql /bin/bash
+```
+
 ```
 root@3f2b0123625a:/# cd /home/scripts
 root@3f2b0123625a:/home/scripts# ls -la
@@ -36,13 +44,14 @@ drwxr-xr-x 1 root root 4096 Feb 14 14:15 ..
 -rwxr-xr-x 1 root root  222 Feb 14 14:39 db-init.sh
 -rwxr-xr-x 1 root root  372 Feb 14 15:30 db-init.sql
 -rwxr-xr-x 1 root root   63 Feb 13 10:10 entrypoint.sh
+root@3f2b0123625a:/home/scripts# exit
+exit
 ```
 
 ---
 #### How database looks like?
 ![Azure Data Studio](/.Docs/screenshot_ADS_01.png)
 ---
-
-<code>docker-compose down</code>
-
-[end-of-story]
+```
+docker-compose down
+```
